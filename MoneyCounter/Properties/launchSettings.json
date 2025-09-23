@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MoneyCounter": {
+      "commandName": "Project",
+      "commandLineArgs": "\"H:\\useful stuff\\utils\\moneycounter\\revenue.txt\""
+    }
+  }
+}

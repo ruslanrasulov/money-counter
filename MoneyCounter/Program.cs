@@ -9,14 +9,6 @@ namespace MoneyCounter
 {
     internal sealed class Program
     {
-        private static readonly string MoneyRxPattern = @"\(\d+[рp]\)";
-        private static readonly Regex MoneyRx;
-
-        static Program()
-        {
-            MoneyRx = new Regex(MoneyRxPattern);
-        }
-
         private static void Main(string[] args)
         {
             if (args.Length == 0)
@@ -44,24 +36,6 @@ namespace MoneyCounter
             {
                 Console.WriteLine(e.Message);
             }
-        }
-
-        private static int CalculateMoney(string text)
-        {
-            if (text == null) throw new ArgumentNullException(nameof(text));
-
-            var lines = MoneyRx.Matches(text).Select(x => x.Value);
-
-            if (lines.Count() > 0)
-            {
-                var result = lines
-                                .Select(x => int.Parse(x.Substring(1, x.Length - 3)))
-                                .Aggregate((a, b) => a + b);
-
-                return result;
-            }
-
-            return 0;
         }
 
         private static MonthExpenses ParseMonth(string text)
